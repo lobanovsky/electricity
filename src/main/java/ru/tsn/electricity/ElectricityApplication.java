@@ -2,6 +2,7 @@ package ru.tsn.electricity;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -79,6 +80,7 @@ public class ElectricityApplication implements CommandLineRunner {
 
     private static final TariffValue TARIFF_1 = new TariffValue(BigDecimal.valueOf(5.58), BigDecimal.valueOf(1.50), BigDecimal.valueOf(4.65));
     private static final TariffValue TARIFF_2 = new TariffValue(BigDecimal.valueOf(5.84), BigDecimal.valueOf(1.63), BigDecimal.valueOf(4.87));
+    private static final TariffValue TARIFF_3 = new TariffValue(BigDecimal.valueOf(6.18), BigDecimal.valueOf(1.74), BigDecimal.valueOf(5.15));
 
     private Chart chart = new Chart();
 
@@ -97,7 +99,8 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MARCH_21 = BigDecimal.valueOf(169764.43);
     public static final BigDecimal APRIL_21 = BigDecimal.valueOf(178820.4);
     public static final BigDecimal MAY_21 = BigDecimal.valueOf(157013.59);
-    public static final BigDecimal JUNE_21 = BigDecimal.valueOf(0.0);
+    public static final BigDecimal JUNE_21 = BigDecimal.valueOf(149582.62);
+    public static final BigDecimal JULE_21 = BigDecimal.valueOf(0.0);
 
     public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
     public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
@@ -113,7 +116,8 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MARCH_21_PARKING = BigDecimal.valueOf(24868.47);
     public static final BigDecimal APRIL_21_PARKING = BigDecimal.valueOf(22626.06);
     public static final BigDecimal MAY_21_PARKING = BigDecimal.valueOf(19360.80);
-    public static final BigDecimal JUNE_21_PARKING = BigDecimal.valueOf(0.0);
+    public static final BigDecimal JUNE_21_PARKING = BigDecimal.valueOf(15066.76);
+    public static final BigDecimal JULE_21_PARKING = BigDecimal.valueOf(0.0);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -137,6 +141,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> april_21 = read("etc/21-04.xlsx");
         final Map<String, Counter> may_21 = read("etc/21-05.xlsx");
         final Map<String, Counter> june_21 = read("etc/21-06.xlsx");
+        final Map<String, Counter> jule_21 = read("etc/21-07.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(march,
                 april,
@@ -153,7 +158,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 march_21,
                 april_21,
                 may_21,
-                june_21);
+                june_21,
+                jule_21);
 
         if (isEqualsCounterSize(allCounters)) return;
 
@@ -172,7 +178,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(february_21, march_21, "март 21", MARCH_21, MARCH_21_PARKING, TARIFF_2),
                 calculate(march_21, april_21, "апрель 21", APRIL_21, APRIL_21_PARKING, TARIFF_2),
                 calculate(april_21, may_21, "май 21", MAY_21, MAY_21_PARKING, TARIFF_2),
-                calculate(may_21, june_21, "июнь 21", JUNE_21, JUNE_21_PARKING, TARIFF_2));
+                calculate(may_21, june_21, "июнь 21", JUNE_21, JUNE_21_PARKING, TARIFF_2),
+                calculate(june_21, jule_21, "июль 21", JULE_21, JULE_21_PARKING, TARIFF_3));
 
         log.info("--- Результат по месяцам ---");
         BigDecimal sumDebit = BigDecimal.ZERO;
@@ -222,7 +229,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "март_21",
                 "апрель_21",
                 "май_21",
-                "июнь_21");
+                "июнь_21",
+                "июль_21");
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
         linesValue.add(row(chart.getOffice(), "Офисы k=1"));
@@ -431,6 +439,7 @@ public class ElectricityApplication implements CommandLineRunner {
 
         for (Row row : sheet) {
             final String flat = row.getCell(FLAT).getStringCellValue().trim();
+            Cell cell = row.getCell(NUMBER);
             final String number = row.getCell(NUMBER).getStringCellValue().trim();
             final LocalDateTime date = row.getCell(DATE).getLocalDateTimeCellValue();
             final BigDecimal t1 = BigDecimal.valueOf(row.getCell(T1).getNumericCellValue()).setScale(3, RoundingMode.HALF_UP);
