@@ -103,6 +103,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal JULE_21 = BigDecimal.valueOf(176356.26);
     public static final BigDecimal AUGUST_21 = BigDecimal.valueOf(162451.12);
     public static final BigDecimal SEPTEMBER_21 = BigDecimal.valueOf(192711.9);
+    public static final BigDecimal OCTOBER_21 = BigDecimal.valueOf(192711.9);
 
     public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
     public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
@@ -122,6 +123,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal JULE_21_PARKING = BigDecimal.valueOf(13997.53);
     public static final BigDecimal AUGUST_21_PARKING = BigDecimal.valueOf(14881.03);
     public static final BigDecimal SEPTEMBER_21_PARKING = BigDecimal.valueOf(16116.28);
+    public static final BigDecimal OCTOBER_21_PARKING = BigDecimal.valueOf(16116.28);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -148,6 +150,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> jule_21 = read("etc/21-07.xlsx");
         final Map<String, Counter> august_21 = read("etc/21-08.xlsx");
         final Map<String, Counter> september_21 = read("etc/2021-09.xlsx");
+        final Map<String, Counter> october_21 = read("etc/2021-10.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(march,
                 april,
@@ -167,7 +170,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 june_21,
                 jule_21,
                 august_21,
-                september_21);
+                september_21,
+                october_21);
 
         if (isEqualsCounterSize(allCounters)) return;
 
@@ -189,7 +193,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(may_21, june_21, "июнь 21", JUNE_21, JUNE_21_PARKING, TARIFF_2),
                 calculate(june_21, jule_21, "июль 21", JULE_21, JULE_21_PARKING, TARIFF_3),
                 calculate(jule_21, august_21, "август 21", AUGUST_21, AUGUST_21_PARKING, TARIFF_3),
-                calculate(august_21, september_21, "сентябрь 21", SEPTEMBER_21, SEPTEMBER_21_PARKING, TARIFF_3));
+                calculate(august_21, september_21, "сентябрь 21", SEPTEMBER_21, SEPTEMBER_21_PARKING, TARIFF_3),
+                calculate(september_21, october_21, "октябрь 21", OCTOBER_21, OCTOBER_21_PARKING, TARIFF_3));
 
         log.info("--- Результат по месяцам ---");
         BigDecimal sumDebit = BigDecimal.ZERO;
@@ -242,7 +247,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "июнь_21",
                 "июль_21",
                 "август_21",
-                "сентябрь_21");
+                "сентябрь_21",
+                "октябрь_21");
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
         linesValue.add(row(chart.getOffice(), "Офисы k=1"));
