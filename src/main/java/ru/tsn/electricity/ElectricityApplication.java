@@ -107,6 +107,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal NOVEMBER_21 = BigDecimal.valueOf(188889.27);
     public static final BigDecimal DECEMBER_21 = BigDecimal.valueOf(212139.74);
     public static final BigDecimal JANUARY_22 = BigDecimal.valueOf(199268.2);
+    public static final BigDecimal FEBRUARY_22 = BigDecimal.valueOf(169766.66);
 
     public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
     public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
@@ -130,6 +131,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal NOVEMBER_21_PARKING = BigDecimal.valueOf(19385.17);
     public static final BigDecimal DECEMBER_21_PARKING = BigDecimal.valueOf(25441.36);
     public static final BigDecimal JANUARY_22_PARKING = BigDecimal.valueOf(27587.36);
+    public static final BigDecimal FEBRUARY_22_PARKING = BigDecimal.valueOf(24635.68);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -160,6 +162,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> november_21 = read("etc/2021-11.xlsx");
         final Map<String, Counter> december_21 = read("etc/2021-12.xlsx");
         final Map<String, Counter> january_22 = read("etc/2022-01.xlsx");
+        final Map<String, Counter> february_22 = read("etc/2022-02.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(march,
                 april,
@@ -183,7 +186,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 october_21,
                 november_21,
                 december_21,
-                january_22);
+                january_22,
+                february_22);
 
         if (isEqualsCounterSize(allCounters)) return;
 
@@ -209,7 +213,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(september_21, october_21, "октябрь 21", OCTOBER_21, OCTOBER_21_PARKING, TARIFF_3),
                 calculate(october_21, november_21, "ноябрь 21", NOVEMBER_21, NOVEMBER_21_PARKING, TARIFF_3),
                 calculate(november_21, december_21, "декабрь 21", DECEMBER_21, DECEMBER_21_PARKING, TARIFF_3),
-                calculate(december_21, january_22, "январь 22", JANUARY_22, JANUARY_22_PARKING, TARIFF_3));
+                calculate(december_21, january_22, "январь 22", JANUARY_22, JANUARY_22_PARKING, TARIFF_3),
+                calculate(january_22, february_22, "февраль 22", FEBRUARY_22, FEBRUARY_22_PARKING, TARIFF_3));
 
         log.info("---  ---");
         log.info("--- Результат по месяцам ---");
@@ -267,7 +272,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "октябрь_21",
                 "ноябрь_21",
                 "декабрь_21",
-                "январь_22");
+                "январь_22",
+                "февраль_22");
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
         linesValue.add(row(chart.getOffice(), "Офисы k=1"));
