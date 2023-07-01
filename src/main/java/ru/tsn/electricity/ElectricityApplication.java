@@ -125,6 +125,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MARCH_23 = BigDecimal.valueOf(204769.59);
     public static final BigDecimal APRIL_23 = BigDecimal.valueOf(195704.56);
     public static final BigDecimal MAY_23 = BigDecimal.valueOf(188278.79);
+    public static final BigDecimal JUNE_23 = BigDecimal.valueOf(177756.53);
 
     public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
     public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
@@ -164,6 +165,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MARCH_23_PARKING = BigDecimal.valueOf(31081.03);
     public static final BigDecimal APRIL_23_PARKING = BigDecimal.valueOf(35180.64);
     public static final BigDecimal MAY_23_PARKING = BigDecimal.valueOf(27225.5);
+    public static final BigDecimal JUNE_23_PARKING = BigDecimal.valueOf(21393.94);
 
 
     public static void main(String[] args) {
@@ -211,6 +213,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> march_23 = read("etc/2023-03.xlsx");
         final Map<String, Counter> april_23 = read("etc/2023-04.xlsx");
         final Map<String, Counter> may_23 = read("etc/2023-05.xlsx");
+        final Map<String, Counter> june_23 = read("etc/2023-06.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(march,
                 april,
@@ -250,7 +253,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 february_23,
                 march_23,
                 april_23,
-                may_23
+                may_23,
+                june_23
         );
 
         if (isEqualsCounterSize(allCounters)) return;
@@ -293,7 +297,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(january_23, february_23, "февраль 23", FEBRUARY_23, FEBRUARY_23_PARKING, TARIFF_5),
                 calculate(february_23, march_23, "март 23", MARCH_23, MARCH_23_PARKING, TARIFF_5),
                 calculate(march_23, april_23, "апрель 23", APRIL_23, APRIL_23_PARKING, TARIFF_5),
-                calculate(april_23, may_23, "май 23", MAY_23, MAY_23_PARKING, TARIFF_5)
+                calculate(april_23, may_23, "май 23", MAY_23, MAY_23_PARKING, TARIFF_5),
+                calculate(may_23, june_23, "июнь 23", JUNE_23, JUNE_23_PARKING, TARIFF_5)
         );
 
         log.info("---  ---");
@@ -368,7 +373,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "февраль_23",
                 "март_23",
                 "апрель_23",
-                "май_23"
+                "май_23",
+                "июнь_23"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
@@ -580,6 +586,7 @@ public class ElectricityApplication implements CommandLineRunner {
         for (Row row : sheet) {
             final String flat = row.getCell(FLAT).getStringCellValue().trim();
             Cell cell = row.getCell(NUMBER);
+            log.info("file:" + fileName + "flat: " + flat + " cellType: " + cell.getCellType() + " cellValue: " + cell.getStringCellValue());
             final String number = row.getCell(NUMBER).getStringCellValue().trim();
             final LocalDateTime date = row.getCell(DATE).getLocalDateTimeCellValue();
             final BigDecimal t1 = BigDecimal.valueOf(row.getCell(T1).getNumericCellValue()).setScale(3, RoundingMode.HALF_UP);
