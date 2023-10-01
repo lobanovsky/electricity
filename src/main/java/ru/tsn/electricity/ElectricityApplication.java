@@ -128,6 +128,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal JUNE_23 = BigDecimal.valueOf(177756.53);
     public static final BigDecimal JULY_23 = BigDecimal.valueOf(189508.37);
     public static final BigDecimal AUGUST_23 = BigDecimal.valueOf(198328.48);
+    public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(0.0);
 
     public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
     public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
@@ -170,6 +171,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal JUNE_23_PARKING = BigDecimal.valueOf(21393.94);
     public static final BigDecimal JULY_23_PARKING = BigDecimal.valueOf(16623.42);
     public static final BigDecimal AUGUST_23_PARKING = BigDecimal.valueOf(15610.13);
+    public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(0.0);
 
 
     public static void main(String[] args) {
@@ -220,6 +222,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> june_23 = read("etc/2023-06.xlsx");
         final Map<String, Counter> jule_23 = read("etc/2023-07.xlsx");
         final Map<String, Counter> august_23 = read("etc/2023-08.xlsx");
+        final Map<String, Counter> september_23 = read("etc/2023-09.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(march,
                 april,
@@ -262,7 +265,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 may_23,
                 june_23,
                 jule_23,
-                august_23
+                august_23,
+                september_23
         );
 
         if (isEqualsCounterSize(allCounters)) return;
@@ -308,7 +312,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(april_23, may_23, "май 23", MAY_23, MAY_23_PARKING, TARIFF_5),
                 calculate(may_23, june_23, "июнь 23", JUNE_23, JUNE_23_PARKING, TARIFF_5),
                 calculate(june_23, jule_23, "июль 23", JULY_23, JULY_23_PARKING, TARIFF_5),
-                calculate(jule_23, august_23, "август 23", AUGUST_23, AUGUST_23_PARKING, TARIFF_5)
+                calculate(jule_23, august_23, "август 23", AUGUST_23, AUGUST_23_PARKING, TARIFF_5),
+                calculate(august_23, september_23, "сентябрь 23", SEPTEMBER_23, SEPTEMBER_23_PARKING, TARIFF_5)
         );
 
         log.info("---  ---");
