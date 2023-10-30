@@ -87,91 +87,11 @@ public class ElectricityApplication implements CommandLineRunner {
     private Chart chart = new Chart();
 
     //Выставили платежки в домовладельце
-    public static final BigDecimal APRIL = BigDecimal.valueOf(123820.21);
-    public static final BigDecimal MAY = BigDecimal.valueOf(134891.26);
-    public static final BigDecimal JUNE = BigDecimal.valueOf(138349.58);
-    public static final BigDecimal JULE = BigDecimal.valueOf(151732.64);
-    public static final BigDecimal AUGUST = BigDecimal.valueOf(132480.28);
-    public static final BigDecimal SEPTEMBER = BigDecimal.valueOf(149224.14);
-    public static final BigDecimal OCTOBER = BigDecimal.valueOf(199525.33);
-    public static final BigDecimal NOVEMBER = BigDecimal.valueOf(177696.37);
-    public static final BigDecimal DECEMBER = BigDecimal.valueOf(184130.94);
-    public static final BigDecimal JANUARY_21 = BigDecimal.valueOf(222063.86);
-    public static final BigDecimal FEBRUARY_21 = BigDecimal.valueOf(204454.29);
-    public static final BigDecimal MARCH_21 = BigDecimal.valueOf(169764.43);
-    public static final BigDecimal APRIL_21 = BigDecimal.valueOf(178820.4);
-    public static final BigDecimal MAY_21 = BigDecimal.valueOf(157013.59);
-    public static final BigDecimal JUNE_21 = BigDecimal.valueOf(149582.62);
-    public static final BigDecimal JULE_21 = BigDecimal.valueOf(176356.26);
-    public static final BigDecimal AUGUST_21 = BigDecimal.valueOf(162451.12);
-    public static final BigDecimal SEPTEMBER_21 = BigDecimal.valueOf(192711.9);
-    public static final BigDecimal OCTOBER_21 = BigDecimal.valueOf(192711.9);
-    public static final BigDecimal NOVEMBER_21 = BigDecimal.valueOf(188889.27);
-    public static final BigDecimal DECEMBER_21 = BigDecimal.valueOf(212139.74);
-    public static final BigDecimal JANUARY_22 = BigDecimal.valueOf(199268.2);
-    public static final BigDecimal FEBRUARY_22 = BigDecimal.valueOf(169766.66);
-    public static final BigDecimal MARCH_22 = BigDecimal.valueOf(184689.87);
-    public static final BigDecimal APRIL_22 = BigDecimal.valueOf(188785.04);
-    public static final BigDecimal MAY_22 = BigDecimal.valueOf(145296.28);
-    public static final BigDecimal JUNE_22 = BigDecimal.valueOf(159698.4);
-    public static final BigDecimal JULE_22 = BigDecimal.valueOf(175482.00);
-    public static final BigDecimal AUGUST_22 = BigDecimal.valueOf(173778.74);
-    public static final BigDecimal SEPTEMBER_22 = BigDecimal.valueOf(203662.47);
-    public static final BigDecimal OCTOBER_22 = BigDecimal.valueOf(152631.46);
-    public static final BigDecimal NOVEMBER_22 = BigDecimal.valueOf(184386.29);
-    public static final BigDecimal DECEMBER_22 = BigDecimal.valueOf(241059.95);
-    public static final BigDecimal JANUARY_23 = BigDecimal.valueOf(147941.37);
-    public static final BigDecimal FEBRUARY_23 = BigDecimal.valueOf(204614.83);
-    public static final BigDecimal MARCH_23 = BigDecimal.valueOf(204769.59);
-    public static final BigDecimal APRIL_23 = BigDecimal.valueOf(195704.56);
-    public static final BigDecimal MAY_23 = BigDecimal.valueOf(188278.79);
-    public static final BigDecimal JUNE_23 = BigDecimal.valueOf(177756.53);
-    public static final BigDecimal JULY_23 = BigDecimal.valueOf(189508.37);
-    public static final BigDecimal AUGUST_23 = BigDecimal.valueOf(198328.48);
-    public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(0.0);
+    public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(189760.84);
+    public static final BigDecimal OCTOBER_23 = BigDecimal.valueOf(0.0);
 
-    public static final BigDecimal APRIL_PARKING = BigDecimal.valueOf(26699.72);
-    public static final BigDecimal MAY_PARKING = BigDecimal.valueOf(19353.55);
-    public static final BigDecimal JUNE_PARKING = BigDecimal.valueOf(26474.40);
-    public static final BigDecimal JULE_PARKING = BigDecimal.valueOf(28008.56);
-    public static final BigDecimal AUGUST_PARKING = BigDecimal.valueOf(27111.37);
-    public static final BigDecimal SEPTEMBER_PARKING = BigDecimal.valueOf(28376.45);
-    public static final BigDecimal OCTOBER_PARKING = BigDecimal.valueOf(31371.54);
-    public static final BigDecimal NOVEMBER_PARKING = BigDecimal.valueOf(27079);
-    public static final BigDecimal DECEMBER_PARKING = BigDecimal.valueOf(30058.33);
-    public static final BigDecimal JANUARY_21_PARKING = BigDecimal.valueOf(30878.21);
-    public static final BigDecimal FEBRUARY_21_PARKING = BigDecimal.valueOf(25611.16);
-    public static final BigDecimal MARCH_21_PARKING = BigDecimal.valueOf(24868.47);
-    public static final BigDecimal APRIL_21_PARKING = BigDecimal.valueOf(22626.06);
-    public static final BigDecimal MAY_21_PARKING = BigDecimal.valueOf(19360.80);
-    public static final BigDecimal JUNE_21_PARKING = BigDecimal.valueOf(15066.76);
-    public static final BigDecimal JULE_21_PARKING = BigDecimal.valueOf(13997.53);
-    public static final BigDecimal AUGUST_21_PARKING = BigDecimal.valueOf(14881.03);
-    public static final BigDecimal SEPTEMBER_21_PARKING = BigDecimal.valueOf(16116.28);
-    public static final BigDecimal OCTOBER_21_PARKING = BigDecimal.valueOf(16116.28);
-    public static final BigDecimal NOVEMBER_21_PARKING = BigDecimal.valueOf(19385.17);
-    public static final BigDecimal DECEMBER_21_PARKING = BigDecimal.valueOf(25441.36);
-    public static final BigDecimal JANUARY_22_PARKING = BigDecimal.valueOf(27587.36);
-    public static final BigDecimal FEBRUARY_22_PARKING = BigDecimal.valueOf(24635.68);
-    public static final BigDecimal MARCH_22_PARKING = BigDecimal.valueOf(26564.86);
-    public static final BigDecimal APRIL_22_PARKING = BigDecimal.valueOf(27167.4);
-    public static final BigDecimal MAY_22_PARKING = BigDecimal.valueOf(20631.14);
-    public static final BigDecimal JUNE_22_PARKING = BigDecimal.valueOf(22373.93);
-    public static final BigDecimal JULE_22_PARKING = BigDecimal.valueOf(14981.79);
-    public static final BigDecimal AUGUST_22_PARKING = BigDecimal.valueOf(12896);
-    public static final BigDecimal SEPTEMBER_22_PARKING = BigDecimal.valueOf(20391.27);
-    public static final BigDecimal OCTOBER_22_PARKING = BigDecimal.valueOf(21946.62);
-    public static final BigDecimal NOVEMBER_22_PARKING = BigDecimal.valueOf(24914.36);
-    public static final BigDecimal DECEMBER_22_PARKING = BigDecimal.valueOf(37746.07);
-    public static final BigDecimal JANUARY_23_PARKING = BigDecimal.valueOf(55721.94);
-    public static final BigDecimal FEBRUARY_23_PARKING = BigDecimal.valueOf(30320.99);
-    public static final BigDecimal MARCH_23_PARKING = BigDecimal.valueOf(31081.03);
-    public static final BigDecimal APRIL_23_PARKING = BigDecimal.valueOf(35180.64);
-    public static final BigDecimal MAY_23_PARKING = BigDecimal.valueOf(27225.5);
-    public static final BigDecimal JUNE_23_PARKING = BigDecimal.valueOf(21393.94);
-    public static final BigDecimal JULY_23_PARKING = BigDecimal.valueOf(16623.42);
-    public static final BigDecimal AUGUST_23_PARKING = BigDecimal.valueOf(15610.13);
-    public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(0.0);
+    public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
+    public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(0.0);
 
 
     public static void main(String[] args) {
@@ -180,140 +100,18 @@ public class ElectricityApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final Map<String, Counter> march = read("etc/03.xlsx");
-        final Map<String, Counter> april = read("etc/04.xlsx");
-        final Map<String, Counter> may = read("etc/05.xlsx");
-        final Map<String, Counter> june = read("etc/06.xlsx");
-        final Map<String, Counter> jule = read("etc/07.xlsx");
-        final Map<String, Counter> august = read("etc/08.xlsx");
-        final Map<String, Counter> september = read("etc/09.xlsx");
-        final Map<String, Counter> october = read("etc/10.xlsx");
-        final Map<String, Counter> november = read("etc/11.xlsx");
-        final Map<String, Counter> december = read("etc/12.xlsx");
-        final Map<String, Counter> january_21 = read("etc/21-01.xlsx");
-        final Map<String, Counter> february_21 = read("etc/21-02.xlsx");
-        final Map<String, Counter> march_21 = read("etc/21-03.xlsx");
-        final Map<String, Counter> april_21 = read("etc/21-04.xlsx");
-        final Map<String, Counter> may_21 = read("etc/21-05.xlsx");
-        final Map<String, Counter> june_21 = read("etc/21-06.xlsx");
-        final Map<String, Counter> jule_21 = read("etc/21-07.xlsx");
-        final Map<String, Counter> august_21 = read("etc/21-08.xlsx");
-        final Map<String, Counter> september_21 = read("etc/2021-09.xlsx");
-        final Map<String, Counter> october_21 = read("etc/2021-10.xlsx");
-        final Map<String, Counter> november_21 = read("etc/2021-11.xlsx");
-        final Map<String, Counter> december_21 = read("etc/2021-12.xlsx");
-        final Map<String, Counter> january_22 = read("etc/2022-01.xlsx");
-        final Map<String, Counter> february_22 = read("etc/2022-02.xlsx");
-        final Map<String, Counter> march_22 = read("etc/2022-03.xlsx");
-        final Map<String, Counter> april_22 = read("etc/2022-04.xlsx");
-        final Map<String, Counter> may_22 = read("etc/2022-05.xlsx");
-        final Map<String, Counter> june_22 = read("etc/2022-06.xlsx");
-        final Map<String, Counter> jule_22 = read("etc/2022-07.xlsx");
-        final Map<String, Counter> august_22 = read("etc/2022-08.xlsx");
-        final Map<String, Counter> september_22 = read("etc/2022-09.xlsx");
-        final Map<String, Counter> october_22 = read("etc/2022-10.xlsx");
-        final Map<String, Counter> november_22 = read("etc/2022-11.xlsx");
-        final Map<String, Counter> december_22 = read("etc/2022-12.xlsx");
-        final Map<String, Counter> january_23 = read("etc/2023-01.xlsx");
-        final Map<String, Counter> february_23 = read("etc/2023-02.xlsx");
-        final Map<String, Counter> march_23 = read("etc/2023-03.xlsx");
-        final Map<String, Counter> april_23 = read("etc/2023-04.xlsx");
-        final Map<String, Counter> may_23 = read("etc/2023-05.xlsx");
-        final Map<String, Counter> june_23 = read("etc/2023-06.xlsx");
-        final Map<String, Counter> jule_23 = read("etc/2023-07.xlsx");
-        final Map<String, Counter> august_23 = read("etc/2023-08.xlsx");
         final Map<String, Counter> september_23 = read("etc/2023-09.xlsx");
+        final Map<String, Counter> october_23 = read("etc/2023-10.xlsx");
 
-        final List<Map<String, Counter>> allCounters = List.of(march,
-                april,
-                may,
-                june,
-                jule,
-                august,
-                september,
-                october,
-                november,
-                december,
-                january_21,
-                february_21,
-                march_21,
-                april_21,
-                may_21,
-                june_21,
-                jule_21,
-                august_21,
-                september_21,
-                october_21,
-                november_21,
-                december_21,
-                january_22,
-                february_22,
-                march_22,
-                april_22,
-                may_22,
-                june_22,
-                jule_22,
-                august_22,
-                september_22,
-                october_22,
-                november_22,
-                december_22,
-                january_23,
-                february_23,
-                march_23,
-                april_23,
-                may_23,
-                june_23,
-                jule_23,
-                august_23,
-                september_23
+        final List<Map<String, Counter>> allCounters = List.of(
+                september_23,
+                october_23
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
-                calculate(march, april, "апрель", APRIL, APRIL_PARKING, TARIFF_1),
-                calculate(april, may, "май", MAY, MAY_PARKING, TARIFF_1),
-                calculate(may, june, "июнь", JUNE, JUNE_PARKING, TARIFF_1),
-                calculate(june, jule, "июль", JULE, JULE_PARKING, TARIFF_2),
-                calculate(jule, august, "август", AUGUST, AUGUST_PARKING, TARIFF_2),
-                calculate(august, september, "сентябрь", SEPTEMBER, SEPTEMBER_PARKING, TARIFF_2),
-                calculate(september, october, "октябрь", OCTOBER, OCTOBER_PARKING, TARIFF_2),
-                calculate(october, november, "ноябрь", NOVEMBER, NOVEMBER_PARKING, TARIFF_2),
-                calculate(november, december, "декабрь", DECEMBER, DECEMBER_PARKING, TARIFF_2),
-                calculate(december, january_21, "январь 21", JANUARY_21, JANUARY_21_PARKING, TARIFF_2),
-                calculate(january_21, february_21, "февраль 21", FEBRUARY_21, FEBRUARY_21_PARKING, TARIFF_2),
-                calculate(february_21, march_21, "март 21", MARCH_21, MARCH_21_PARKING, TARIFF_2),
-                calculate(march_21, april_21, "апрель 21", APRIL_21, APRIL_21_PARKING, TARIFF_2),
-                calculate(april_21, may_21, "май 21", MAY_21, MAY_21_PARKING, TARIFF_2),
-                calculate(may_21, june_21, "июнь 21", JUNE_21, JUNE_21_PARKING, TARIFF_2),
-                calculate(june_21, jule_21, "июль 21", JULE_21, JULE_21_PARKING, TARIFF_3),
-                calculate(jule_21, august_21, "август 21", AUGUST_21, AUGUST_21_PARKING, TARIFF_3),
-                calculate(august_21, september_21, "сентябрь 21", SEPTEMBER_21, SEPTEMBER_21_PARKING, TARIFF_3),
-                calculate(september_21, october_21, "октябрь 21", OCTOBER_21, OCTOBER_21_PARKING, TARIFF_3),
-                calculate(october_21, november_21, "ноябрь 21", NOVEMBER_21, NOVEMBER_21_PARKING, TARIFF_3),
-                calculate(november_21, december_21, "декабрь 21", DECEMBER_21, DECEMBER_21_PARKING, TARIFF_3),
-                calculate(december_21, january_22, "январь 22", JANUARY_22, JANUARY_22_PARKING, TARIFF_3),
-                calculate(january_22, february_22, "февраль 22", FEBRUARY_22, FEBRUARY_22_PARKING, TARIFF_3),
-                calculate(february_22, march_22, "март 22", MARCH_22, MARCH_22_PARKING, TARIFF_3),
-                calculate(march_22, april_22, "апрель 22", APRIL_22, APRIL_22_PARKING, TARIFF_3),
-                calculate(april_22, may_22, "май 22", MAY_22, MAY_22_PARKING, TARIFF_3),
-                calculate(may_22, june_22, "июнь 22", JUNE_22, JUNE_22_PARKING, TARIFF_3),
-                calculate(june_22, jule_22, "июль 22", JULE_22, JULE_22_PARKING, TARIFF_4),
-                calculate(jule_22, august_22, "август 22", AUGUST_22, AUGUST_22_PARKING, TARIFF_4),
-                calculate(august_22, september_22, "сентябрь 22", SEPTEMBER_22, SEPTEMBER_22_PARKING, TARIFF_4),
-                calculate(september_22, october_22, "октябрь 22", OCTOBER_22, OCTOBER_22_PARKING, TARIFF_4),
-                calculate(october_22, november_22, "ноябрь 22", NOVEMBER_22, NOVEMBER_22_PARKING, TARIFF_4),
-                calculate(november_22, december_22, "декабрь 22", DECEMBER_22, DECEMBER_22_PARKING, TARIFF_5),
-                calculate(december_22, january_23, "январь 23", JANUARY_23, JANUARY_23_PARKING, TARIFF_5),
-                calculate(january_23, february_23, "февраль 23", FEBRUARY_23, FEBRUARY_23_PARKING, TARIFF_5),
-                calculate(february_23, march_23, "март 23", MARCH_23, MARCH_23_PARKING, TARIFF_5),
-                calculate(march_23, april_23, "апрель 23", APRIL_23, APRIL_23_PARKING, TARIFF_5),
-                calculate(april_23, may_23, "май 23", MAY_23, MAY_23_PARKING, TARIFF_5),
-                calculate(may_23, june_23, "июнь 23", JUNE_23, JUNE_23_PARKING, TARIFF_5),
-                calculate(june_23, jule_23, "июль 23", JULY_23, JULY_23_PARKING, TARIFF_5),
-                calculate(jule_23, august_23, "август 23", AUGUST_23, AUGUST_23_PARKING, TARIFF_5),
-                calculate(august_23, september_23, "сентябрь 23", SEPTEMBER_23, SEPTEMBER_23_PARKING, TARIFF_5)
+                calculate(september_23, october_23, "октябрь 23", OCTOBER_23, OCTOBER_23_PARKING, TARIFF_5)
         );
 
         log.info("---  ---");
@@ -351,47 +149,8 @@ public class ElectricityApplication implements CommandLineRunner {
 
     private void createChart() throws IOException {
         final List<String> months = List.of("Месяц/Потребитель",
-                "апрель",
-                "май",
-                "июнь",
-                "июль",
-                "август",
-                "сентябрь",
-                "октябрь",
-                "ноябрь",
-                "декабрь",
-                "январь_21",
-                "февраль_21",
-                "март_21",
-                "апрель_21",
-                "май_21",
-                "июнь_21",
-                "июль_21",
-                "август_21",
-                "сентябрь_21",
-                "октябрь_21",
-                "ноябрь_21",
-                "декабрь_21",
-                "январь_22",
-                "февраль_22",
-                "март_22",
-                "апрель_22",
-                "май_22",
-                "июнь_22",
-                "июль_22",
-                "август_22",
-                "сентябрь_22",
-                "октябрь_22",
-                "ноябрь_22",
-                "декабрь_22",
-                "январь_23",
-                "февраль_23",
-                "март_23",
-                "апрель_23",
-                "май_23",
-                "июнь_23",
-                "июль_23",
-                "август_23"
+                "сентябрь_23",
+                "октябрь_23"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
