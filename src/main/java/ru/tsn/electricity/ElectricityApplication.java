@@ -88,10 +88,12 @@ public class ElectricityApplication implements CommandLineRunner {
 
     //Выставили платежки в домовладельце
     public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(189760.84);
-    public static final BigDecimal OCTOBER_23 = BigDecimal.valueOf(0.0);
+    public static final BigDecimal OCTOBER_23 = BigDecimal.valueOf(187402.5);
+    public static final BigDecimal NOVEMBER_23 = BigDecimal.valueOf(190256.6);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
-    public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(0.0);
+    public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
+    public static final BigDecimal NOVEMBER_23_PARKING = BigDecimal.valueOf(25492.06);
 
 
     public static void main(String[] args) {
@@ -102,16 +104,20 @@ public class ElectricityApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         final Map<String, Counter> september_23 = read("etc/2023-09.xlsx");
         final Map<String, Counter> october_23 = read("etc/2023-10.xlsx");
+        final Map<String, Counter> november_23 = read("etc/2023-11.xlsx");
 
         final List<Map<String, Counter>> allCounters = List.of(
                 september_23,
-                october_23
+                october_23,
+                november_23
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
-                calculate(september_23, october_23, "октябрь 23", OCTOBER_23, OCTOBER_23_PARKING, TARIFF_5)
+                calculate(september_23, october_23, "октябрь 23", OCTOBER_23, OCTOBER_23_PARKING, TARIFF_5),
+                calculate(october_23, november_23, "ноябрь 23", NOVEMBER_23, NOVEMBER_23_PARKING, TARIFF_5)
+
         );
 
         log.info("---  ---");
@@ -150,7 +156,8 @@ public class ElectricityApplication implements CommandLineRunner {
     private void createChart() throws IOException {
         final List<String> months = List.of("Месяц/Потребитель",
                 "сентябрь_23",
-                "октябрь_23"
+                "октябрь_23",
+                "ноябрь_23"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
