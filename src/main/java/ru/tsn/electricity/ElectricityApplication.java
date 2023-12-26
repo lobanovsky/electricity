@@ -90,12 +90,12 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(189760.84);
     public static final BigDecimal OCTOBER_23 = BigDecimal.valueOf(187402.5);
     public static final BigDecimal NOVEMBER_23 = BigDecimal.valueOf(190256.6);
-    public static final BigDecimal DECEMBER_23 = BigDecimal.valueOf(239251.47);
+    public static final BigDecimal DECEMBER_23 = BigDecimal.valueOf(242447.71);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
     public static final BigDecimal NOVEMBER_23_PARKING = BigDecimal.valueOf(25492.06);
-    public static final BigDecimal DECEMBER_23_PARKING = BigDecimal.valueOf(31265.19);
+    public static final BigDecimal DECEMBER_23_PARKING = BigDecimal.valueOf(34457.20);
 
 
     public static void main(String[] args) {
