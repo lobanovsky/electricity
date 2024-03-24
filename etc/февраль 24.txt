@@ -1,4 +1,5 @@
 Counter[flat='6', number='21712947', date=null, t1=0.000, t2=0.000, t3=0.000, total=0.000]
+Counter[flat='17', number='21968056', date=null, t1=0.000, t2=0.000, t3=0.000, total=0.000]
 Counter[flat='66', number='21968442', date=null, t1=0.000, t2=0.000, t3=0.000, total=0.000]
 Counter[flat='60', number='21967979', date=null, t1=0.000, t2=0.000, t3=0.000, total=0.000]
 Counter[flat='106', number='21967200', date=null, t1=0.000, t2=0.000, t3=0.000, total=0.000]
@@ -13,7 +14,6 @@ Counter[flat='102', number='21968242', date=null, t1=12.616, t2=14.399, t3=16.24
 Counter[flat='5', number='21712960', date=null, t1=15.496, t2=13.248, t3=20.884, total=49.628]
 Counter[flat='73', number='21967479', date=null, t1=14.476, t2=16.479, t3=21.187, total=52.142]
 Counter[flat='45', number='21666907', date=null, t1=13.740, t2=18.270, t3=20.566, total=52.576]
-Counter[flat='17', number='21968056', date=null, t1=20.000, t2=16.000, t3=20.000, total=56.000]
 Counter[flat='75', number='21968458', date=null, t1=20.720, t2=15.690, t3=23.346, total=59.756]
 Counter[flat='41', number='21666577', date=null, t1=16.359, t2=16.793, t3=27.203, total=60.355]
 Counter[flat='48', number='21968079', date=null, t1=20.782, t2=16.693, t3=23.208, total=60.683]
