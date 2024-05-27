@@ -95,6 +95,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal FEBRUARY_24 = BigDecimal.valueOf(238946.97);
     public static final BigDecimal MARCH_24 = BigDecimal.valueOf(202240.89);
     public static final BigDecimal APRIL_24 = BigDecimal.valueOf(193014.15);
+    public static final BigDecimal MAY_24 = BigDecimal.valueOf(189553.10);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
@@ -104,6 +105,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal FEBRUARY_24_PARKING = BigDecimal.valueOf(38864.67);
     public static final BigDecimal MARCH_24_PARKING = BigDecimal.valueOf(34901.71);
     public static final BigDecimal APRIL_24_PARKING = BigDecimal.valueOf(31612.16);
+    public static final BigDecimal MAY_24_PARKING = BigDecimal.valueOf(32593.21);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -111,37 +113,28 @@ public class ElectricityApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final Map<String, Counter> september_23 = read("etc/2023-09.xlsx");
-        final Map<String, Counter> october_23 = read("etc/2023-10.xlsx");
-        final Map<String, Counter> november_23 = read("etc/2023-11.xlsx");
-        final Map<String, Counter> december_23 = read("etc/2023-12.xlsx");
         final Map<String, Counter> january_24 = read("etc/2024-01.xlsx");
         final Map<String, Counter> february_24 = read("etc/2024-02.xlsx");
         final Map<String, Counter> march_24 = read("etc/2024-03.xlsx");
         final Map<String, Counter> april_24 = read("etc/2024-04.xlsx");
+        final Map<String, Counter> may_24 = read("etc/2024-05.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
-                september_23,
-                october_23,
-                november_23,
-                december_23,
                 january_24,
                 february_24,
                 march_24,
-                april_24
+                april_24,
+                may_24
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
-                calculate(september_23, october_23, "октябрь 23", OCTOBER_23, OCTOBER_23_PARKING, TARIFF_5),
-                calculate(october_23, november_23, "ноябрь 23", NOVEMBER_23, NOVEMBER_23_PARKING, TARIFF_5),
-                calculate(november_23, december_23, "декабрь 23", DECEMBER_23, DECEMBER_23_PARKING, TARIFF_5),
-                calculate(december_23, january_24, "январь 24", JANUARY_24, JANUARY_24_PARKING, TARIFF_5),
                 calculate(january_24, february_24, "февраль 24", FEBRUARY_24, FEBRUARY_24_PARKING, TARIFF_5),
                 calculate(february_24, march_24, "март 24", MARCH_24, MARCH_24_PARKING, TARIFF_5),
-                calculate(march_24, april_24, "апрель 24", APRIL_24, APRIL_24_PARKING, TARIFF_5)
+                calculate(march_24, april_24, "апрель 24", APRIL_24, APRIL_24_PARKING, TARIFF_5),
+                calculate(april_24, may_24, "май 24", MAY_24, MAY_24_PARKING, TARIFF_5)
         );
 
         log.info("---  ---");
@@ -179,14 +172,11 @@ public class ElectricityApplication implements CommandLineRunner {
 
     private void createChart() throws IOException {
         final List<String> months = List.of("Месяц/Потребитель",
-                "сентябрь_23",
-                "октябрь_23",
-                "ноябрь_23",
-                "декабрь_23",
                 "январь_24",
                 "февраль_24",
                 "март_24",
-                "апрель_24"
+                "апрель_24",
+                "май_24"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
