@@ -83,6 +83,7 @@ public class ElectricityApplication implements CommandLineRunner {
     private static final TariffValue TARIFF_3 = new TariffValue(BigDecimal.valueOf(6.18), BigDecimal.valueOf(1.74), BigDecimal.valueOf(5.15));
     private static final TariffValue TARIFF_4 = new TariffValue(BigDecimal.valueOf(6.52), BigDecimal.valueOf(1.88), BigDecimal.valueOf(5.43));
     private static final TariffValue TARIFF_5 = new TariffValue(BigDecimal.valueOf(8.23), BigDecimal.valueOf(2.62), BigDecimal.valueOf(5.66));
+    private static final TariffValue TARIFF_6 = new TariffValue(BigDecimal.valueOf(8.94), BigDecimal.valueOf(3.02), BigDecimal.valueOf(6.15));
 
     private Chart chart = new Chart();
 
@@ -97,6 +98,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal APRIL_24 = BigDecimal.valueOf(193014.15);
     public static final BigDecimal MAY_24 = BigDecimal.valueOf(189553.10);
     public static final BigDecimal JUNE_24 = BigDecimal.valueOf(199477.47);
+    public static final BigDecimal JULY_24 = BigDecimal.valueOf(241977.47);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
@@ -108,6 +110,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal APRIL_24_PARKING = BigDecimal.valueOf(31612.16);
     public static final BigDecimal MAY_24_PARKING = BigDecimal.valueOf(32593.21);
     public static final BigDecimal JUNE_24_PARKING = BigDecimal.valueOf(23699.78);
+    public static final BigDecimal JULY_24_PARKING = BigDecimal.valueOf(22425.44);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -121,6 +124,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> april_24 = read("etc/2024-04.xlsx");
         final Map<String, Counter> may_24 = read("etc/2024-05.xlsx");
         final Map<String, Counter> june_24 = read("etc/2024-06.xlsx");
+        final Map<String, Counter> july_24 = read("etc/2024-07.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
@@ -139,7 +143,9 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(february_24, march_24, "март 24", MARCH_24, MARCH_24_PARKING, TARIFF_5),
                 calculate(march_24, april_24, "апрель 24", APRIL_24, APRIL_24_PARKING, TARIFF_5),
                 calculate(april_24, may_24, "май 24", MAY_24, MAY_24_PARKING, TARIFF_5),
-                calculate(may_24, june_24, "июнь 24", JUNE_24, JUNE_24_PARKING, TARIFF_5)
+                calculate(may_24, june_24, "июнь 24", JUNE_24, JUNE_24_PARKING, TARIFF_5),
+                calculate(june_24, july_24, "июль 24", JULY_24, JULY_24_PARKING, TARIFF_6)
+
         );
 
         log.info("---  ---");
@@ -182,7 +188,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "март_24",
                 "апрель_24",
                 "май_24",
-                "июнь_24"
+                "июнь_24",
+                "июль_24"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
