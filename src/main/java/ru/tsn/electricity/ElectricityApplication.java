@@ -99,6 +99,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MAY_24 = BigDecimal.valueOf(189553.10);
     public static final BigDecimal JUNE_24 = BigDecimal.valueOf(199477.47);
     public static final BigDecimal JULY_24 = BigDecimal.valueOf(241977.47);
+    public static final BigDecimal AUGUST_24 = BigDecimal.valueOf(0.0);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
@@ -111,6 +112,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MAY_24_PARKING = BigDecimal.valueOf(32593.21);
     public static final BigDecimal JUNE_24_PARKING = BigDecimal.valueOf(23699.78);
     public static final BigDecimal JULY_24_PARKING = BigDecimal.valueOf(22425.44);
+    public static final BigDecimal AUGUST_24_PARKING = BigDecimal.valueOf(0.0);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -125,6 +127,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> may_24 = read("etc/2024-05.xlsx");
         final Map<String, Counter> june_24 = read("etc/2024-06.xlsx");
         final Map<String, Counter> july_24 = read("etc/2024-07.xlsx");
+        final Map<String, Counter> august_24 = read("etc/2024-08.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
@@ -133,7 +136,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 march_24,
                 april_24,
                 may_24,
-                june_24
+                june_24,
+                july_24
         );
 
         if (isEqualsCounterSize(allCounters)) return;
@@ -144,8 +148,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(march_24, april_24, "апрель 24", APRIL_24, APRIL_24_PARKING, TARIFF_5),
                 calculate(april_24, may_24, "май 24", MAY_24, MAY_24_PARKING, TARIFF_5),
                 calculate(may_24, june_24, "июнь 24", JUNE_24, JUNE_24_PARKING, TARIFF_5),
-                calculate(june_24, july_24, "июль 24", JULY_24, JULY_24_PARKING, TARIFF_6)
-
+                calculate(june_24, july_24, "июль 24", JULY_24, JULY_24_PARKING, TARIFF_6),
+                calculate(july_24, august_24, "август 24", AUGUST_24, AUGUST_24_PARKING, TARIFF_6)
         );
 
         log.info("---  ---");
@@ -189,7 +193,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "апрель_24",
                 "май_24",
                 "июнь_24",
-                "июль_24"
+                "июль_24",
+                "август_24"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
