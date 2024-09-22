@@ -99,7 +99,8 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MAY_24 = BigDecimal.valueOf(189553.10);
     public static final BigDecimal JUNE_24 = BigDecimal.valueOf(199477.47);
     public static final BigDecimal JULY_24 = BigDecimal.valueOf(241977.47);
-    public static final BigDecimal AUGUST_24 = BigDecimal.valueOf(0.0);
+    public static final BigDecimal AUGUST_24 = BigDecimal.valueOf(222645.62);
+    public static final BigDecimal SEPTEMBER_24 = BigDecimal.valueOf(0.0);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
@@ -112,7 +113,8 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal MAY_24_PARKING = BigDecimal.valueOf(32593.21);
     public static final BigDecimal JUNE_24_PARKING = BigDecimal.valueOf(23699.78);
     public static final BigDecimal JULY_24_PARKING = BigDecimal.valueOf(22425.44);
-    public static final BigDecimal AUGUST_24_PARKING = BigDecimal.valueOf(0.0);
+    public static final BigDecimal AUGUST_24_PARKING = BigDecimal.valueOf(23646.01);
+    public static final BigDecimal SEPTEMBER_24_PARKING = BigDecimal.valueOf(0.0);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -128,6 +130,7 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> june_24 = read("etc/2024-06.xlsx");
         final Map<String, Counter> july_24 = read("etc/2024-07.xlsx");
         final Map<String, Counter> august_24 = read("etc/2024-08.xlsx");
+        final Map<String, Counter> september_24 = read("etc/2024-09.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
@@ -137,7 +140,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 april_24,
                 may_24,
                 june_24,
-                july_24
+                july_24,
+                august_24
         );
 
         if (isEqualsCounterSize(allCounters)) return;
@@ -149,7 +153,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(april_24, may_24, "май 24", MAY_24, MAY_24_PARKING, TARIFF_5),
                 calculate(may_24, june_24, "июнь 24", JUNE_24, JUNE_24_PARKING, TARIFF_5),
                 calculate(june_24, july_24, "июль 24", JULY_24, JULY_24_PARKING, TARIFF_6),
-                calculate(july_24, august_24, "август 24", AUGUST_24, AUGUST_24_PARKING, TARIFF_6)
+                calculate(july_24, august_24, "август 24", AUGUST_24, AUGUST_24_PARKING, TARIFF_6),
+                calculate(august_24, september_24, "сентябрь 24", SEPTEMBER_24, SEPTEMBER_24_PARKING, TARIFF_6)
         );
 
         log.info("---  ---");
@@ -194,7 +199,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "май_24",
                 "июнь_24",
                 "июль_24",
-                "август_24"
+                "август_24",
+                "сентябрь_24"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
@@ -249,7 +255,11 @@ public class ElectricityApplication implements CommandLineRunner {
         chart.getHouse().add(inHouse.sum());
 
         final CounterValue inParking = value(startMonth, endMonth, IN_PARKING, PARKING_K);
-        log.info("[k=40] Паркинг: [{}]КВт, [{}]₽", inParking, money(inParking, tariff));
+        final int k = 400;
+        final BigDecimal t1 = inParking.getT1().add(BigDecimal.valueOf(k));
+        final BigDecimal t2 = inParking.getT2().add(BigDecimal.valueOf(k));
+        final BigDecimal t3 = inParking.getT3().add(BigDecimal.valueOf(k));
+        log.info("Экс.усл: (паркинг) [{}], [T1={}, T2={}, Т3={}]КВт, [{}]₽", inParking, t1, t2, t3, money(inParking, tariff));
         chart.getParking().add(inParking.sum());
 
         final CounterValue inItp = value(startMonth, endMonth, IN_ITP, ITP_K);
@@ -265,7 +275,11 @@ public class ElectricityApplication implements CommandLineRunner {
         chart.getFlats().add(flats.sum());
 
         final CounterValue commonHouseAndItp = inHouse.sub(flats).add(inItp);
-        log.info("Экс.усл: (дом - квартиры + итп) [{}]КВт", inHouse.sub(flats).add(inItp));
+        final int kParking = 400;
+        final BigDecimal t1Parking = commonHouseAndItp.getT1().add(BigDecimal.valueOf(kParking));
+        final BigDecimal t2Parking = commonHouseAndItp.getT2().add(BigDecimal.valueOf(kParking));
+        final BigDecimal t3Parking = commonHouseAndItp.getT3().add(BigDecimal.valueOf(kParking));
+        log.info("Экс.усл: (дом - квартиры + итп) [{}], [T1={}, T2={}, Т3={}]КВт", commonHouseAndItp, t1Parking, t2Parking, t3Parking);
         chart.getCommon().add(commonHouseAndItp.sum());
 
         final BigDecimal total = money(inOfficeT3, tariff)
