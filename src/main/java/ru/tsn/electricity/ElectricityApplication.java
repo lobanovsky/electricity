@@ -106,7 +106,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal DECEMBER_24 = BigDecimal.valueOf(290155.25);
     public static final BigDecimal JANUARY_25 = BigDecimal.valueOf(217520.54);
     public static final BigDecimal FEBRUARY_25 = BigDecimal.valueOf(319640.37);
-    public static final BigDecimal MARCH_25 = BigDecimal.valueOf(0);
+    public static final BigDecimal MARCH_25 = BigDecimal.valueOf(192758.82);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
@@ -126,7 +126,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal DECEMBER_24_PARKING = BigDecimal.valueOf(40137.85);
     public static final BigDecimal JANUARY_25_PARKING = BigDecimal.valueOf(34771.38);
     public static final BigDecimal FEBRUARY_25_PARKING = BigDecimal.valueOf(47991.08);
-    public static final BigDecimal MARCH_25_PARKING = BigDecimal.valueOf(0);
+    public static final BigDecimal MARCH_25_PARKING = BigDecimal.valueOf(31948.66);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
