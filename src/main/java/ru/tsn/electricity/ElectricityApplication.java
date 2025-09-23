@@ -113,7 +113,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal JUNE_25 = BigDecimal.valueOf(237013.52);
     public static final BigDecimal JULY_25 = BigDecimal.valueOf(219045.76);
     public static final BigDecimal AUGUST_25 = BigDecimal.valueOf(265962.18);
-    public static final BigDecimal SEPTEMBER_25 = BigDecimal.valueOf(359061.48);
+    public static final BigDecimal SEPTEMBER_25 = BigDecimal.valueOf(241380.35);
 
     public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
     public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
