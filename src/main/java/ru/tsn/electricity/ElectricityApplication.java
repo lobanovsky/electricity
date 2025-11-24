@@ -89,22 +89,6 @@ public class ElectricityApplication implements CommandLineRunner {
     private Chart chart = new Chart();
 
     //Выставили платежки в домовладельце
-    public static final BigDecimal SEPTEMBER_23 = BigDecimal.valueOf(189760.84);
-    public static final BigDecimal OCTOBER_23 = BigDecimal.valueOf(187402.5);
-    public static final BigDecimal NOVEMBER_23 = BigDecimal.valueOf(190256.6);
-    public static final BigDecimal DECEMBER_23 = BigDecimal.valueOf(242447.71);
-    public static final BigDecimal JANUARY_24 = BigDecimal.valueOf(227244.81);
-    public static final BigDecimal FEBRUARY_24 = BigDecimal.valueOf(238946.97);
-    public static final BigDecimal MARCH_24 = BigDecimal.valueOf(202240.89);
-    public static final BigDecimal APRIL_24 = BigDecimal.valueOf(193014.15);
-    public static final BigDecimal MAY_24 = BigDecimal.valueOf(189553.10);
-    public static final BigDecimal JUNE_24 = BigDecimal.valueOf(199477.47);
-    public static final BigDecimal JULY_24 = BigDecimal.valueOf(241977.47);
-    public static final BigDecimal AUGUST_24 = BigDecimal.valueOf(222645.62);
-    public static final BigDecimal SEPTEMBER_24 = BigDecimal.valueOf(221496.67);
-    public static final BigDecimal OCTOBER_24 = BigDecimal.valueOf(205984.33);
-    public static final BigDecimal NOVEMBER_24 = BigDecimal.valueOf(269619.91);
-    public static final BigDecimal DECEMBER_24 = BigDecimal.valueOf(290155.25);
     public static final BigDecimal JANUARY_25 = BigDecimal.valueOf(217520.54);
     public static final BigDecimal FEBRUARY_25 = BigDecimal.valueOf(319640.37);
     public static final BigDecimal MARCH_25 = BigDecimal.valueOf(192758.82);
@@ -115,24 +99,9 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal AUGUST_25 = BigDecimal.valueOf(265962.18);
     public static final BigDecimal SEPTEMBER_25 = BigDecimal.valueOf(241380.35);
     public static final BigDecimal OCTOBER_25 = BigDecimal.valueOf(254358.71);
+    public  static final BigDecimal NOVEMBER_25 = BigDecimal.valueOf(286479.55);
 
 
-    public static final BigDecimal SEPTEMBER_23_PARKING = BigDecimal.valueOf(20442.22);
-    public static final BigDecimal OCTOBER_23_PARKING = BigDecimal.valueOf(24946.69);
-    public static final BigDecimal NOVEMBER_23_PARKING = BigDecimal.valueOf(25492.06);
-    public static final BigDecimal DECEMBER_23_PARKING = BigDecimal.valueOf(34457.20);
-    public static final BigDecimal JANUARY_24_PARKING = BigDecimal.valueOf(34647.20);
-    public static final BigDecimal FEBRUARY_24_PARKING = BigDecimal.valueOf(38864.67);
-    public static final BigDecimal MARCH_24_PARKING = BigDecimal.valueOf(34901.71);
-    public static final BigDecimal APRIL_24_PARKING = BigDecimal.valueOf(31612.16);
-    public static final BigDecimal MAY_24_PARKING = BigDecimal.valueOf(32593.21);
-    public static final BigDecimal JUNE_24_PARKING = BigDecimal.valueOf(23699.78);
-    public static final BigDecimal JULY_24_PARKING = BigDecimal.valueOf(22425.44);
-    public static final BigDecimal AUGUST_24_PARKING = BigDecimal.valueOf(23646.01);
-    public static final BigDecimal SEPTEMBER_24_PARKING = BigDecimal.valueOf(23885.83);
-    public static final BigDecimal OCTOBER_24_PARKING = BigDecimal.valueOf(27451.00);
-    public static final BigDecimal NOVEMBER_24_PARKING = BigDecimal.valueOf(33020.37);
-    public static final BigDecimal DECEMBER_24_PARKING = BigDecimal.valueOf(40137.85);
     public static final BigDecimal JANUARY_25_PARKING = BigDecimal.valueOf(34771.38);
     public static final BigDecimal FEBRUARY_25_PARKING = BigDecimal.valueOf(47991.08);
     public static final BigDecimal MARCH_25_PARKING = BigDecimal.valueOf(31948.66);
@@ -143,6 +112,8 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal AUGUST_25_PARKING = BigDecimal.valueOf(32973.64);
     public static final BigDecimal SEPTEMBER_25_PARKING = BigDecimal.valueOf(33493.89);
     public static final BigDecimal OCTOBER_25_PARKING = BigDecimal.valueOf(39706.18);
+    public static final  BigDecimal NOVEMBER_25_PARKING = BigDecimal.valueOf(40310.98);
+
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -150,18 +121,6 @@ public class ElectricityApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final Map<String, Counter> january_24 = read("etc/2024-01.xlsx");
-        final Map<String, Counter> february_24 = read("etc/2024-02.xlsx");
-        final Map<String, Counter> march_24 = read("etc/2024-03.xlsx");
-        final Map<String, Counter> april_24 = read("etc/2024-04.xlsx");
-        final Map<String, Counter> may_24 = read("etc/2024-05.xlsx");
-        final Map<String, Counter> june_24 = read("etc/2024-06.xlsx");
-        final Map<String, Counter> july_24 = read("etc/2024-07.xlsx");
-        final Map<String, Counter> august_24 = read("etc/2024-08.xlsx");
-        final Map<String, Counter> september_24 = read("etc/2024-09.xlsx");
-        final Map<String, Counter> october_24 = read("etc/2024-10.xlsx");
-        final Map<String, Counter> november_24 = read("etc/2024-11.xlsx");
-        final Map<String, Counter> december_24 = read("etc/2024-12.xlsx");
         final Map<String, Counter> january_25 = read("etc/2025-01.xlsx");
         final Map<String, Counter> february_25 = read("etc/2025-02.xlsx");
         final Map<String, Counter> march_25 = read("etc/2025-03.xlsx");
@@ -172,21 +131,10 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> august_25 = read("etc/2025-08.xlsx");
         final Map<String, Counter> september_25 = read("etc/2025-09.xlsx");
         final Map<String, Counter> october_25 = read("etc/2025-10.xlsx");
+        final Map<String, Counter> november_25 = read("etc/2025-11.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
-                january_24,
-                february_24,
-                march_24,
-                april_24,
-                may_24,
-                june_24,
-                july_24,
-                august_24,
-                september_24,
-                october_24,
-                november_24,
-                december_24,
                 january_25,
                 february_25,
                 march_25,
@@ -196,24 +144,13 @@ public class ElectricityApplication implements CommandLineRunner {
                 july_25,
                 august_25,
                 september_25,
-                october_25
+                october_25,
+                november_25
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
-                calculate(january_24, february_24, "февраль 24", FEBRUARY_24, FEBRUARY_24_PARKING, TARIFF_5),
-                calculate(february_24, march_24, "март 24", MARCH_24, MARCH_24_PARKING, TARIFF_5),
-                calculate(march_24, april_24, "апрель 24", APRIL_24, APRIL_24_PARKING, TARIFF_5),
-                calculate(april_24, may_24, "май 24", MAY_24, MAY_24_PARKING, TARIFF_5),
-                calculate(may_24, june_24, "июнь 24", JUNE_24, JUNE_24_PARKING, TARIFF_5),
-                calculate(june_24, july_24, "июль 24", JULY_24, JULY_24_PARKING, TARIFF_6),
-                calculate(july_24, august_24, "август 24", AUGUST_24, AUGUST_24_PARKING, TARIFF_6),
-                calculate(august_24, september_24, "сентябрь 24", SEPTEMBER_24, SEPTEMBER_24_PARKING, TARIFF_6),
-                calculate(september_24, october_24, "октябрь 24", OCTOBER_24, OCTOBER_24_PARKING, TARIFF_6),
-                calculate(october_24, november_24, "ноябрь 24", NOVEMBER_24, NOVEMBER_24_PARKING, TARIFF_6),
-                calculate(november_24, december_24, "декабрь 24", DECEMBER_24, DECEMBER_24_PARKING, TARIFF_6),
-                calculate(december_24, january_25, "январь 25", JANUARY_25, JANUARY_25_PARKING, TARIFF_6),
                 calculate(january_25, february_25, "февраль 25", FEBRUARY_25, FEBRUARY_25_PARKING, TARIFF_6),
                 calculate(february_25, march_25, "март 25", MARCH_25, MARCH_25_PARKING, TARIFF_6),
                 calculate(march_25, april_25, "апрель 25", APRIL_25, APRIL_25_PARKING, TARIFF_6),
@@ -222,7 +159,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(june_25, july_25, "июль 25", JULY_25, JULY_25_PARKING, TARIFF_7),
                 calculate(july_25, august_25, "август 25", AUGUST_25, AUGUST_25_PARKING, TARIFF_7),
                 calculate(august_25, september_25, "сентябрь 25", SEPTEMBER_25, SEPTEMBER_25_PARKING, TARIFF_7),
-                calculate(september_25, october_25, "октябрь 25", OCTOBER_25, OCTOBER_25_PARKING, TARIFF_7)
+                calculate(september_25, october_25, "октябрь 25", OCTOBER_25, OCTOBER_25_PARKING, TARIFF_7),
+                calculate(october_25, november_25, "ноябрь 25", NOVEMBER_25, NOVEMBER_25_PARKING, TARIFF_7)
         );
 
         log.info("---  ---");
@@ -260,18 +198,6 @@ public class ElectricityApplication implements CommandLineRunner {
 
     private void createChart() throws IOException {
         final List<String> months = List.of("Месяц/Потребитель",
-                "январь_24",
-                "февраль_24",
-                "март_24",
-                "апрель_24",
-                "май_24",
-                "июнь_24",
-                "июль_24",
-                "август_24",
-                "сентябрь_24",
-                "октябрь_24",
-                "ноябрь_24",
-                "декабрь_24",
                 "январь_25",
                 "февраль_25",
                 "март_25",
@@ -281,7 +207,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 "июль_25",
                 "август_25",
                 "сентябрь_25",
-                "октябрь_25"
+                "октябрь_25",
+                "ноябрь_25"
         );
         List<String> linesValue = new ArrayList<>();
         linesValue.add(String.join(";", months));
