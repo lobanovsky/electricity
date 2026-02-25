@@ -85,41 +85,17 @@ public class ElectricityApplication implements CommandLineRunner {
     private static final TariffValue TARIFF_5 = new TariffValue(BigDecimal.valueOf(8.23), BigDecimal.valueOf(2.62), BigDecimal.valueOf(5.66));
     private static final TariffValue TARIFF_6 = new TariffValue(BigDecimal.valueOf(8.94), BigDecimal.valueOf(3.02), BigDecimal.valueOf(6.15));
     private static final TariffValue TARIFF_7 = new TariffValue(BigDecimal.valueOf(10.23), BigDecimal.valueOf(3.71), BigDecimal.valueOf(7.16));
-    private static final TariffValue TARIFF_8 = new TariffValue(BigDecimal.valueOf(10.4), BigDecimal.valueOf(3.77), BigDecimal.valueOf(7.28));
+    private static final TariffValue TARIFF_8 = new TariffValue(BigDecimal.valueOf(10.40), BigDecimal.valueOf(3.77), BigDecimal.valueOf(7.28));
     private static final TariffValue TARIFF_9 = new TariffValue(BigDecimal.valueOf(11.77), BigDecimal.valueOf(4.61), BigDecimal.valueOf(8.46));
 
     private Chart chart = new Chart();
 
     //Выставили платежки в домовладельце
-    public static final BigDecimal JANUARY_25 = BigDecimal.valueOf(217520.54);
-    public static final BigDecimal FEBRUARY_25 = BigDecimal.valueOf(319640.37);
-    public static final BigDecimal MARCH_25 = BigDecimal.valueOf(192758.82);
-    public static final BigDecimal APRIL_25 = BigDecimal.valueOf(234191.2);
-    public static final BigDecimal MAY_25 = BigDecimal.valueOf(226538.45);
-    public static final BigDecimal JUNE_25 = BigDecimal.valueOf(237013.52);
-    public static final BigDecimal JULY_25 = BigDecimal.valueOf(219045.76);
-    public static final BigDecimal AUGUST_25 = BigDecimal.valueOf(265962.18);
-    public static final BigDecimal SEPTEMBER_25 = BigDecimal.valueOf(241380.35);
-    public static final BigDecimal OCTOBER_25 = BigDecimal.valueOf(254358.71);
-    public  static final BigDecimal NOVEMBER_25 = BigDecimal.valueOf(286479.55);
-    public static final BigDecimal DECEMBER_25 = BigDecimal.valueOf(284364.00);
     public static final BigDecimal JANUARY_26 = BigDecimal.valueOf(314819.67);
+    public static final BigDecimal FEBRUARY_26 = BigDecimal.valueOf(296785.08);
 
-
-    public static final BigDecimal JANUARY_25_PARKING = BigDecimal.valueOf(34771.38);
-    public static final BigDecimal FEBRUARY_25_PARKING = BigDecimal.valueOf(47991.08);
-    public static final BigDecimal MARCH_25_PARKING = BigDecimal.valueOf(31948.66);
-    public static final BigDecimal APRIL_25_PARKING = BigDecimal.valueOf(39150.87);
-    public static final BigDecimal MAY_25_PARKING = BigDecimal.valueOf(39762.66);
-    public static final BigDecimal JUNE_25_PARKING = BigDecimal.valueOf(32429.58);
-    public static final BigDecimal JULY_25_PARKING = BigDecimal.valueOf(26278.71);
-    public static final BigDecimal AUGUST_25_PARKING = BigDecimal.valueOf(32973.64);
-    public static final BigDecimal SEPTEMBER_25_PARKING = BigDecimal.valueOf(33493.89);
-    public static final BigDecimal OCTOBER_25_PARKING = BigDecimal.valueOf(39706.18);
-    public static final  BigDecimal NOVEMBER_25_PARKING = BigDecimal.valueOf(40310.98);
-    public static final BigDecimal DECEMBER_25_PARKING = BigDecimal.valueOf(40227.25);
     public static final BigDecimal JANUARY_26_PARKING = BigDecimal.valueOf(48767.24);
-
+    private static final BigDecimal FEBRUARY_26_PARKING = BigDecimal.valueOf(46542.93);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -127,51 +103,21 @@ public class ElectricityApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        final Map<String, Counter> january_25 = read("etc/2025-01.xlsx");
-        final Map<String, Counter> february_25 = read("etc/2025-02.xlsx");
-        final Map<String, Counter> march_25 = read("etc/2025-03.xlsx");
-        final Map<String, Counter> april_25 = read("etc/2025-04.xlsx");
-        final Map<String, Counter> may_25 = read("etc/2025-05.xlsx");
-        final Map<String, Counter> june_25 = read("etc/2025-06.xlsx");
-        final Map<String, Counter> july_25 = read("etc/2025-07.xlsx");
-        final Map<String, Counter> august_25 = read("etc/2025-08.xlsx");
-        final Map<String, Counter> september_25 = read("etc/2025-09.xlsx");
-        final Map<String, Counter> october_25 = read("etc/2025-10.xlsx");
-        final Map<String, Counter> november_25 = read("etc/2025-11.xlsx");
-        final Map<String, Counter> december_25 = read("etc/2025-12.xlsx");
+        final Map<String, Counter> december_25 = read("etc/2025/2025-12.xlsx");
         final Map<String, Counter> january_26 = read("etc/2026-01.xlsx");
+        final Map<String, Counter> february_26 = read("etc/2026-02.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
-                january_25,
-                february_25,
-                march_25,
-                april_25,
-                may_25,
-                june_25,
-                july_25,
-                august_25,
-                september_25,
-                october_25,
-                november_25,
-                december_25
+                january_26,
+                february_26
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
-                calculate(january_25, february_25, "февраль 25", FEBRUARY_25, FEBRUARY_25_PARKING, TARIFF_6),
-                calculate(february_25, march_25, "март 25", MARCH_25, MARCH_25_PARKING, TARIFF_6),
-                calculate(march_25, april_25, "апрель 25", APRIL_25, APRIL_25_PARKING, TARIFF_6),
-                calculate(april_25, may_25, "май 25", MAY_25, MAY_25_PARKING, TARIFF_6),
-                calculate(may_25, june_25, "июнь 25", JUNE_25, JUNE_25_PARKING, TARIFF_6),
-                calculate(june_25, july_25, "июль 25", JULY_25, JULY_25_PARKING, TARIFF_7),
-                calculate(july_25, august_25, "август 25", AUGUST_25, AUGUST_25_PARKING, TARIFF_7),
-                calculate(august_25, september_25, "сентябрь 25", SEPTEMBER_25, SEPTEMBER_25_PARKING, TARIFF_7),
-                calculate(september_25, october_25, "октябрь 25", OCTOBER_25, OCTOBER_25_PARKING, TARIFF_7),
-                calculate(october_25, november_25, "ноябрь 25", NOVEMBER_25, NOVEMBER_25_PARKING, TARIFF_7),
-                calculate(november_25, december_25, "декабрь 25", DECEMBER_25, DECEMBER_25_PARKING, TARIFF_7),
-                calculate(december_25, january_26, "январь 26", JANUARY_26, JANUARY_26_PARKING, TARIFF_8)
+                calculate(december_25, january_26, "январь 26", JANUARY_26, JANUARY_26_PARKING, TARIFF_8),
+                calculate(january_26, february_26, "февраль 26", FEBRUARY_26, FEBRUARY_26_PARKING, TARIFF_8)
         );
 
         log.info("---  ---");
@@ -193,7 +139,6 @@ public class ElectricityApplication implements CommandLineRunner {
                 sumCredit,
                 sumCredit.subtract(sumDebit));
 
-        createChart();
     }
 
 
@@ -205,47 +150,6 @@ public class ElectricityApplication implements CommandLineRunner {
                 .map(item -> StringUtils.replace(item, ".", ","))
                 .collect(Collectors.toList()));
         return String.join(";", result);
-    }
-
-    private void createChart() throws IOException {
-        final List<String> months = List.of("Месяц/Потребитель",
-                "январь_25",
-                "февраль_25",
-                "март_25",
-                "апрель_25",
-                "май_25",
-                "июнь_25",
-                "июль_25",
-                "август_25",
-                "сентябрь_25",
-                "октябрь_25",
-                "ноябрь_25",
-                "декабрь_25",
-                "январь_26"
-        );
-        List<String> linesValue = new ArrayList<>();
-        linesValue.add(String.join(";", months));
-        linesValue.add(row(chart.getOffice(), "Офисы k=1"));
-        linesValue.add(row(chart.getHouse(), "Дом k=80"));
-        linesValue.add(row(chart.getParking(), "Паркинг k=40"));
-        linesValue.add(row(chart.getItp(), "ИТП k=15"));
-        Files.write(Paths.get("etc/chartValue.csv"), linesValue);
-
-        List<String> linesMoney = new ArrayList<>();
-        linesMoney.add(String.join(";", months));
-        linesMoney.add(row(chart.getOfficeMoney(), "Офисы k=1"));
-        linesMoney.add(row(chart.getHouseMoney(), "Дом k=80"));
-        linesMoney.add(row(chart.getParkingMoney(), "Паркинг k=40"));
-        linesMoney.add(row(chart.getItpMoney(), "ИТП k=15"));
-        Files.write(Paths.get("etc/chartMoney.csv"), linesMoney);
-
-        List<String> linesTotalExpose = new ArrayList<>();
-        linesTotalExpose.add(String.join(";", months));
-        linesTotalExpose.add(row(chart.getExposeHouse(), "Дом (Выставили)"));
-        linesTotalExpose.add(row(chart.getTotalHouseMoney(), "Дом (Оплатили)"));
-        linesTotalExpose.add(row(chart.getExposeParking(), "Паркинг (Выставили)"));
-        linesTotalExpose.add(row(chart.getParkingMoney(), "Паркинг (Оплатили)"));
-        Files.write(Paths.get("etc/chartTotalMoney.csv"), linesTotalExpose);
     }
 
     private Result calculate(Map<String, Counter> startMonth, Map<String, Counter> endMonth, String month, BigDecimal exposedHouse, BigDecimal exposedParking, TariffValue tariff) {
