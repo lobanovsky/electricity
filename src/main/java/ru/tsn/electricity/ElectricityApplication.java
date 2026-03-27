@@ -78,14 +78,23 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal ITP_K = BigDecimal.valueOf(15);
     public static final BigDecimal PARKING_K = BigDecimal.valueOf(40);
 
+    //с 1 января 2020
     private static final TariffValue TARIFF_1 = new TariffValue(BigDecimal.valueOf(5.58), BigDecimal.valueOf(1.50), BigDecimal.valueOf(4.65));
+    //с 1 июля 2020
     private static final TariffValue TARIFF_2 = new TariffValue(BigDecimal.valueOf(5.84), BigDecimal.valueOf(1.63), BigDecimal.valueOf(4.87));
+    //с 1 июля 2021
     private static final TariffValue TARIFF_3 = new TariffValue(BigDecimal.valueOf(6.18), BigDecimal.valueOf(1.74), BigDecimal.valueOf(5.15));
+    //с 1 июля 2022
     private static final TariffValue TARIFF_4 = new TariffValue(BigDecimal.valueOf(6.52), BigDecimal.valueOf(1.88), BigDecimal.valueOf(5.43));
+    //с 1 декабря 2022
     private static final TariffValue TARIFF_5 = new TariffValue(BigDecimal.valueOf(8.23), BigDecimal.valueOf(2.62), BigDecimal.valueOf(5.66));
+    //с 1 июля 2024
     private static final TariffValue TARIFF_6 = new TariffValue(BigDecimal.valueOf(8.94), BigDecimal.valueOf(3.02), BigDecimal.valueOf(6.15));
+    //с 1 июля 2025
     private static final TariffValue TARIFF_7 = new TariffValue(BigDecimal.valueOf(10.23), BigDecimal.valueOf(3.71), BigDecimal.valueOf(7.16));
+    //c 1 января 2026
     private static final TariffValue TARIFF_8 = new TariffValue(BigDecimal.valueOf(10.40), BigDecimal.valueOf(3.77), BigDecimal.valueOf(7.28));
+    //c 1 октября 2026
     private static final TariffValue TARIFF_9 = new TariffValue(BigDecimal.valueOf(11.77), BigDecimal.valueOf(4.61), BigDecimal.valueOf(8.46));
 
     private Chart chart = new Chart();
@@ -93,9 +102,11 @@ public class ElectricityApplication implements CommandLineRunner {
     //Выставили платежки в домовладельце
     public static final BigDecimal JANUARY_26 = BigDecimal.valueOf(314819.67);
     public static final BigDecimal FEBRUARY_26 = BigDecimal.valueOf(296785.08);
+    public static final BigDecimal MARCH_26 = BigDecimal.valueOf(319223.35);
 
     public static final BigDecimal JANUARY_26_PARKING = BigDecimal.valueOf(48767.24);
     private static final BigDecimal FEBRUARY_26_PARKING = BigDecimal.valueOf(46542.93);
+    public static final BigDecimal MARCH_26_PARKING = BigDecimal.valueOf(45205.70);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -106,19 +117,21 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> december_25 = read("etc/2025/2025-12.xlsx");
         final Map<String, Counter> january_26 = read("etc/2026-01.xlsx");
         final Map<String, Counter> february_26 = read("etc/2026-02.xlsx");
+        final Map<String, Counter> march_26 = read("etc/2026-03.xlsx");
 
 
         final List<Map<String, Counter>> allCounters = List.of(
                 january_26,
-                february_26
+                february_26,
+                march_26
         );
 
         if (isEqualsCounterSize(allCounters)) return;
 
         final List<Result> result = List.of(
                 calculate(december_25, january_26, "январь 26", JANUARY_26, JANUARY_26_PARKING, TARIFF_8),
-                calculate(january_26, february_26, "февраль 26", FEBRUARY_26, FEBRUARY_26_PARKING, TARIFF_8)
-        );
+                calculate(january_26, february_26, "февраль 26", FEBRUARY_26, FEBRUARY_26_PARKING, TARIFF_8),
+                calculate(february_26, march_26, "март 26", MARCH_26, MARCH_26_PARKING, TARIFF_8));
 
         log.info("---  ---");
         log.info("--- Результат по месяцам ---");
