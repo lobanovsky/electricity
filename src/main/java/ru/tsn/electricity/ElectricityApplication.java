@@ -106,6 +106,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal APRIL_26 = BigDecimal.valueOf(267332.64);
     public static final BigDecimal MAY_26 = BigDecimal.valueOf(276404.89);
     public static final BigDecimal JUNE_26 = BigDecimal.valueOf(280465.25);
+    public static final BigDecimal JULY_26 = BigDecimal.valueOf(0.0);
 
     public static final BigDecimal JANUARY_26_PARKING = BigDecimal.valueOf(48767.24);
     private static final BigDecimal FEBRUARY_26_PARKING = BigDecimal.valueOf(46542.93);
@@ -113,6 +114,7 @@ public class ElectricityApplication implements CommandLineRunner {
     public static final BigDecimal APRIL_26_PARKING = BigDecimal.valueOf(37599.38);
     public static final BigDecimal MAY_26_PARKING = BigDecimal.valueOf(37316.37);
     public static final BigDecimal JUNE_26_PARKING = BigDecimal.valueOf(34587.80);
+    public static final BigDecimal JULY_26_PARKING = BigDecimal.valueOf(0.0);
 
     public static void main(String[] args) {
         SpringApplication.run(ElectricityApplication.class, args);
@@ -127,6 +129,8 @@ public class ElectricityApplication implements CommandLineRunner {
         final Map<String, Counter> april_26 = read("etc/2026-04.xlsx");
         final Map<String, Counter> may_26 = read("etc/2026-05.xlsx");
         final Map<String, Counter> june_26 = read("etc/2026-06.xlsx");
+        final Map<String, Counter> july_26 = read("etc/2026-07.xlsx");
+
 
 
         final List<Map<String, Counter>> allCounters = List.of(
@@ -135,7 +139,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 march_26,
                 april_26,
                 may_26,
-                june_26
+                june_26,
+                july_26
         );
 
         if (isEqualsCounterSize(allCounters)) return;
@@ -146,7 +151,8 @@ public class ElectricityApplication implements CommandLineRunner {
                 calculate(february_26, march_26, "март 26", MARCH_26, MARCH_26_PARKING, TARIFF_8),
                 calculate(march_26, april_26, "апрель 26", APRIL_26, APRIL_26_PARKING, TARIFF_8),
                 calculate(april_26, may_26, "май 26", MAY_26, MAY_26_PARKING, TARIFF_8),
-                calculate(may_26, june_26, "июнь 26", JUNE_26, JUNE_26_PARKING, TARIFF_8)
+                calculate(may_26, june_26, "июнь 26", JUNE_26, JUNE_26_PARKING, TARIFF_8),
+                calculate(june_26, july_26, "июль 26", JULY_26, JUNE_26_PARKING, TARIFF_8)
         );
 
         log.info("---  ---");
